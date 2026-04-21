@@ -65,3 +65,9 @@ Visual verification only. After each change:
 ## When Stuck
 Three failed attempts at the same bug means you're missing context.
 Stop and ask instead of guessing again.
+
+## MCP Tools Available
+- chrome-devtools: use after every visual change to verify rendering
+  at http://localhost:5173. Report any console errors found.
+- context7: use before writing any Recharts component or complex
+  Tailwind layout. Always pull current docs first, never guess the API.
