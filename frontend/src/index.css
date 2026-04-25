@@ -8,15 +8,49 @@
 
 body {
   margin: 0;
-  background: #0A0E1A;
+  background-color: #0A0E1A;
+  background-image: radial-gradient(circle, rgba(34, 211, 238, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
   color: #E6EDF7;
 }
 
+/* CRT scan-line overlay — fixed, non-interactive */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.04) 3px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1E2A3F; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #22D3EE40; }
+
 @keyframes alertSlideIn {
-  from { opacity: 0; transform: translateY(-6px); background: rgba(34, 211, 238, 0.08); }
+  from { opacity: 0; transform: translateY(-8px); background: rgba(34, 211, 238, 0.10); }
   to   { opacity: 1; transform: translateY(0);    background: transparent; }
 }
 
 .alert-new {
-  animation: alertSlideIn 0.5s ease forwards;
+  animation: alertSlideIn 0.6s ease forwards;
+}
+
+/* Subtle number flicker for live values */
+@keyframes numTick {
+  0%, 90%, 100% { opacity: 1; }
+  95%            { opacity: 0.75; }
+}
+
+.num-live {
+  animation: numTick 2s ease-in-out infinite;
 }
